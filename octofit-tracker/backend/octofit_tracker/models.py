@@ -10,7 +10,7 @@ class User(models.Model):
 
 class Team(models.Model):
     name = models.CharField(max_length=255)
-    members = models.ArrayField(model_container=User)
+    members = models.JSONField()  # Use JSONField to store a list of user IDs
 
     def __str__(self):
         return self.name
@@ -32,10 +32,9 @@ class Leaderboard(models.Model):
         return f"{self.team.name}: {self.points} points"
 
 class Workout(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    workout_type = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     duration = models.IntegerField()  # in minutes
-    date = models.DateField()
+    calories_burned = models.IntegerField()
 
     def __str__(self):
-        return f"{self.user.name} - {self.workout_type} on {self.date}"
+        return self.name

@@ -25,6 +25,5 @@ class LeaderboardModelTest(TestCase):
 
 class WorkoutModelTest(TestCase):
     def test_create_workout(self):
-        user = User.objects.create(email="test@example.com", name="Test User", password="password123")
-        workout = Workout.objects.create(user=user, workout_type="Yoga", duration=60, date="2025-04-15")
-        self.assertEqual(workout.workout_type, "Yoga")
+        workout = Workout.objects.create(name="Yoga", duration=60, calories_burned=200)
+        self.assertEqual(workout.name, "Yoga")
